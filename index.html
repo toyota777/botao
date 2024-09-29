@@ -1,0 +1,99 @@
+<!--
+Programa: Botões
+Nome: Davi Yuu Santos Toyota-Nº:04 - Turma: 2 ANO B
+Nome: Felipe Amoroso Lambaz-Nº:08.
+Nome: Pedro Campos Pesotti- Nº:26.
+Nome: Rafael Alvez Lazari - Nº:30.
+Nome: Rodrigo Ferro Fraga - Nº:31.
+DESCRIÇÃO: Os botões fazem o componente se mexer  
+-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Componentes</title
+    <meta charset="UTF-8">
+    <style>
+        canvas {
+            border: 1px solid #d3d3d3;
+            background-color: #A0A0A0;
+
+                    .Left    {
+            background-color: blue;
+                color:green;
+            }
+        }
+    </style>
+    <script>
+        var cor = 'white';
+        var cont = 1;
+        var myGamePiece;
+        var movimento = 10; 
+
+        function startGame() {
+            myGamePiece = new component(30, 30, "red", 10, 120);
+            myGameArea.start();
+        }
+
+        var myGameArea = {
+            canvas: document.createElement("canvas"),
+            start: function() {
+                this.canvas.width = 480;
+                this.canvas.height = 270;
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                this.interval = setInterval(updateGameArea, 20);
+            },
+            clear: function() {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            }
+        }
+
+        function component(width, height, color, x, y) {
+            this.width = width;
+            this.height = height;
+            this.x = x;
+            this.y = y;
+            this.update = function() {
+                var ctx = myGameArea.context;
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+                
+            }
+        }
+
+
+
+
+        function updateGameArea() {
+            myGameArea.clear();
+            myGamePiece.update();
+        }
+
+        function Up() {
+            myGamePiece.y -= movimento;
+        }
+
+        function Down() {
+            myGamePiece.y += movimento;
+        }
+
+        function Left() {
+            myGamePiece.x -= movimento;
+        }
+
+        function Right() {
+            myGamePiece.x += movimento;
+        }
+
+        
+    </script>
+</head>
+<body onload="startGame();">
+    <div>
+        <button onclick="Up()">up</button>
+        <button onclick="Down()">down</button>
+        <button onclick="Left()">left</button>
+        <button onclick="Right()">right</button>
+    </div>
+</body>
+</html>
